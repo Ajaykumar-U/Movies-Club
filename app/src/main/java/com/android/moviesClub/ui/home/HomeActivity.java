@@ -14,6 +14,7 @@ public class HomeActivity extends BaseActivity implements HomeContract.View {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         presenter.attachView(this);
+        //modification
     }
 
     @Override
