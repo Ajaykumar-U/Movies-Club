@@ -1,4 +1,4 @@
-package com.android.moviesClub.ui.base;
+package com.android.moviesClub.base;
 
 import androidx.appcompat.app.AppCompatActivity;
 

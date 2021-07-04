@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.home.HomeActivity">
+    tools:context=".home.HomeActivity">
 
     <TextView
         android:id="@+id/tv_action_bar_home"
@@ -36,6 +36,7 @@
         app:layout_constraintRight_toRightOf="parent"/>
 
     <androidx.viewpager.widget.ViewPager
+        android:id="@+id/view_pager_home"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintLeft_toLeftOf="parent"

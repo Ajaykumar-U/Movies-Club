@@ -2,4 +2,12 @@
     <string name="app_name">Movies Club</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="sand">abb</string>
+    <string-array name="home_tabs_title">
+        <item>Kannada</item>
+        <item>English</item>
+        <item>Hindi</item>
+        <item>Telugu</item>
+        <item>Tamil</item>
+    </string-array>
 </resources>
