@@ -5,27 +5,34 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.moviesClub.R;
 import com.android.moviesClub.base.BaseFragment;
+import com.android.moviesClub.movieCollection.model.Item;
+
+import java.util.List;
 
 public class MoviesListFragment extends BaseFragment implements MoviesListContract.View {
 
-    public static final String TITLE_KEY = "title_key";
-    private static final String TAG = "MoviesListFragment";
     MoviesListContract.Presenter presenter = new MoviesListPresenter();
-    TextView textView;
-    String title;
+    String tabTitle;
+    RecyclerView recyclerViewMovieCollection;
+
+
+    public MoviesListFragment(String tabTitle) {
+        this.tabTitle = tabTitle;
+    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        assert getArguments() != null;
-        title = getArguments().getString(TITLE_KEY);
+        presenter.attachView(this);
+        presenter.getMovieListToDisplay(tabTitle);
     }
 
     @Override
@@ -38,10 +45,8 @@ public class MoviesListFragment extends BaseFragment implements MoviesListContra
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        presenter.attachView(this);
-        textView = view.findViewById(R.id.tvFragmentDisplay);
-        textView.setText(title);
-        presenter.getMovieListToDisplay();
+        recyclerViewMovieCollection = view.findViewById(R.id.recycler_view_Fragment);
+        recyclerViewMovieCollection.setLayoutManager(new GridLayoutManager(getContext(),3));
     }
 
     @Override
@@ -51,6 +56,11 @@ public class MoviesListFragment extends BaseFragment implements MoviesListContra
     }
 
     public void onTabChange(String title) {
-        Log.e(TAG, "setTitle: " + title);
+        Log.d("Tag1",title);
+    }
+
+    @Override
+    public void getMovieList(List<Item> movieList) {
+        recyclerViewMovieCollection.setAdapter(new MoviesListRecyclerAdapter(movieList));
     }
 }

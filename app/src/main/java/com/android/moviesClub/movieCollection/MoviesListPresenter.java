@@ -2,8 +2,12 @@ package com.android.moviesClub.movieCollection;
 
 import android.util.Log;
 
+import com.android.moviesClub.movieCollection.model.Item;
 import com.android.moviesClub.movieCollection.model.Root;
 import com.android.moviesClub.service.RetrofitBuilder;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -26,14 +30,15 @@ public class MoviesListPresenter implements MoviesListContract.Presenter {
     }
 
     @Override
-    public void getMovieListToDisplay() {
+    public void getMovieListToDisplay(String tabTitle) {
 
-        Call<Root> dataList = RetrofitBuilder.getService().getItems();
+        Call<Root> dataList = RetrofitBuilder.getService().getItems(tabTitle);
         dataList.enqueue(new Callback<Root>() {
             @Override
             public void onResponse(Call<Root> call, Response<Root> response) {
                 if (response.code() == 200) {
-                    Log.d("Tag2", "" + response.body());
+                    List<Item> movieList =response.body().getItems();
+                    view.getMovieList(movieList);
                 }
             }
 
