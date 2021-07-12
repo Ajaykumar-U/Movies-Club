@@ -1,5 +1,7 @@
 package com.android.moviesClub.movieCollection;
 
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 
 import com.android.moviesClub.movieCollection.model.Item;
@@ -8,6 +10,10 @@ import com.android.moviesClub.service.RetrofitBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.logging.LogRecord;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -37,8 +43,23 @@ public class MoviesListPresenter implements MoviesListContract.Presenter {
             @Override
             public void onResponse(Call<Root> call, Response<Root> response) {
                 if (response.code() == 200) {
-                    List<Item> movieList =response.body().getItems();
-                    view.getMovieList(movieList);
+                    ExecutorService service = Executors.newSingleThreadExecutor();
+                    Handler handler = new Handler(Looper.getMainLooper());
+                    service.execute(new Runnable() {
+                        @Override
+                        public void run() {
+                            List<Item> movieList =response.body().getItems();
+                            handler.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    view.getMovieList(movieList);
+                                }
+                            });
+                        }
+
+                    });
+
+
                 }
             }
 

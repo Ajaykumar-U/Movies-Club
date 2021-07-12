@@ -12,8 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MoviesClub">
         <activity
-            android:name=".movieDetails.MovieDetailsActivity"
-            android:parentActivityName=".home.HomeActivity"></activity>
+            android:name=".movieDetails.MovieDetailsActivity"></activity>
         <activity android:name=".home.HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
