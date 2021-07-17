@@ -13,5 +13,6 @@ public class MoviesListContract {
 
     interface View extends BaseContractView {
         void getMovieList(List<Item> movieList);
+        void onError(String errorMsg);
     }
 }

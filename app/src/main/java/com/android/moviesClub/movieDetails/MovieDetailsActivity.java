@@ -1,15 +1,13 @@
 package com.android.moviesClub.movieDetails;
 
 import android.os.Bundle;
-
-import com.android.moviesClub.movieCollection.model.Item;
-
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.android.moviesClub.R;
+import com.android.moviesClub.movieCollection.model.Item;
 import com.squareup.picasso.Picasso;
 
 public class MovieDetailsActivity extends AppCompatActivity {
@@ -19,7 +17,6 @@ public class MovieDetailsActivity extends AppCompatActivity {
 
     String title;
     String fulltitle;
-    String imageUrl;
     String year=null;
     String crew=null;
     String imDBRating =null;
@@ -58,11 +55,8 @@ public class MovieDetailsActivity extends AppCompatActivity {
             moviesDetails +="Crew: "+ crew;
         }
 
-        imageUrl = item.getImage();
-
         tvActivityMovieDetailsTitle.setText(title);
         tvActivityMovieDetailsPage.setText(moviesDetails);
-        Picasso.get().load(imageUrl).into(ivActivityMovieDetails);
+        Picasso.get().load(item.getImage()).into(ivActivityMovieDetails);
     }
-
 }

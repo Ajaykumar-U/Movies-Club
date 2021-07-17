@@ -11,8 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MoviesClub">
-        <activity
-            android:name=".movieDetails.MovieDetailsActivity"></activity>
+        <activity android:name=".searchMovies.SearchActivity"></activity>
+        <activity android:name=".movieDetails.MovieDetailsActivity" />
+        <activity android:name=".searchMovies.DetailsActivity"/>
         <activity android:name=".home.HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

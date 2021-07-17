@@ -1,7 +1,6 @@
 package com.android.moviesClub.movieCollection;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,20 +18,12 @@ import java.util.List;
 
 public class MoviesListFragment extends BaseFragment implements MoviesListContract.View {
 
-    MoviesListContract.Presenter presenter = new MoviesListPresenter();
-    String tabTitle;
-    RecyclerView recyclerViewMovieCollection;
-
+    private MoviesListContract.Presenter presenter = new MoviesListPresenter();
+    private String tabTitle;
+    private RecyclerView recyclerViewMovieCollection;
 
     public MoviesListFragment(String tabTitle) {
         this.tabTitle = tabTitle;
-    }
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        presenter.attachView(this);
-        presenter.getMovieListToDisplay(tabTitle);
     }
 
     @Override
@@ -43,24 +34,27 @@ public class MoviesListFragment extends BaseFragment implements MoviesListContra
     }
 
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view,
+                              @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        presenter.attachView(this);
+        presenter.getMovieListToDisplay(tabTitle);
         recyclerViewMovieCollection = view.findViewById(R.id.recycler_view_Fragment);
-        recyclerViewMovieCollection.setLayoutManager(new GridLayoutManager(getContext(),3));
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        presenter.dropView();
-    }
-
-    public void onTabChange(String title) {
-        Log.d("Tag1",title);
+        recyclerViewMovieCollection.setLayoutManager(new GridLayoutManager(getContext(), 3));
     }
 
     @Override
     public void getMovieList(List<Item> movieList) {
         recyclerViewMovieCollection.setAdapter(new MoviesListRecyclerAdapter(movieList));
+    }
+
+    @Override
+    public void onError(String errorMsg){
+     // todo show error ui
+    }
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        presenter.dropView();
     }
 }

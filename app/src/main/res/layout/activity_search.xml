@@ -5,13 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/dark_grey"
-    tools:context=".home.HomeActivity">
+    tools:context=".searchMovies.SearchActivity">
 
     <TextView
-        android:id="@+id/tv_action_bar_home"
+        android:id="@+id/tv_action_bar_search"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="MoviesClub"
+        android:text="MC"
         android:gravity="left"
         android:layout_marginLeft="10dp"
         android:background="@color/dark_grey"
@@ -24,38 +24,25 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/searchIconHome"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:src="@drawable/ic_search"
-        android:layout_marginRight="10dp"
-        app:layout_constraintTop_toTopOf="@id/tv_action_bar_home"
-        app:layout_constraintBottom_toBottomOf="@id/tv_action_bar_home"
-        app:layout_constraintRight_toRightOf="@id/tv_action_bar_home"/>
-
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tab_layout_home"
-        android:layout_width="match_parent"
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/searchView"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:paddingBottom="4dp"
-        app:tabMode="scrollable"
-        app:tabSelectedTextColor="#fff"
-        app:tabIndicatorColor="#fff"
-        app:tabTextColor="#9fa6a8"
-        android:background="@color/dark_grey"
-        app:layout_constraintTop_toBottomOf="@id/tv_action_bar_home"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"/>
+        android:hint="Search here"
+        android:textSize="20dp"
+        android:textAlignment="viewEnd"
+        android:layout_marginRight="10dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tv_action_bar_search"
+        app:layout_constraintBottom_toBottomOf="@id/tv_action_bar_search"/>
 
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/view_pager_home"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewSearch"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/tv_action_bar_search"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tab_layout_home"
         app:layout_constraintBottom_toBottomOf="parent"/>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
